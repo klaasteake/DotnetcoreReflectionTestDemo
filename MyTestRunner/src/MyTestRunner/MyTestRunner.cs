@@ -21,7 +21,15 @@ namespace MyTestRunner
         {
             foreach (var method in methods)
             {
-                method.Invoke(instance, new object[0]);
+                try
+                {
+                    method.Invoke(instance, new object[0]);
+                }
+                catch
+                {
+
+                }
+                
             }
         }
     }

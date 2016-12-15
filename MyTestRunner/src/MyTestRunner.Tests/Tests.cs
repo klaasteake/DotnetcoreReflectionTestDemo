@@ -110,5 +110,24 @@ namespace MyTestRunner.Tests
 
             Assert.Empty(methods);
         }
+
+        //
+
+        [Fact]
+        public void TestrunnerGeeftGeenExceptionWanneerEenMethodemetFactAttributeWelEenExceptionGooit()
+        {
+            // Arrange
+            var runner = new MyTestRunner();
+
+            var type = typeof(DummyTestClassMetMethodeDieExceptionGooit);
+            var instance = Activator.CreateInstance(type);
+            var methods = runner.ResolveTestMethods(type);
+
+            // Act
+            runner.ExecuteTestMethods(methods, instance);
+
+            // Assert
+
+        }
     }
 }
