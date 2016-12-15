@@ -26,6 +26,7 @@ namespace MyTestRunner
                 try
                 {
                     method.Invoke(instance, new object[0]);
+                    results.Add(new MyTestRunnerResult() { type = method, Result = true });
                 }
                 catch
                 {

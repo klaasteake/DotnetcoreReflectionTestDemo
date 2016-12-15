@@ -147,5 +147,22 @@ namespace MyTestRunner.Tests
             // Assert
             Assert.Equal(1, testresults.Where(t => t.Result == false).Count());
         }
+
+        [Fact]
+        public void TestRunnerGeefEenLijstVanGeslaagdeTesten()
+        {
+            // Arrange
+            var runner = new MyTestRunner();
+
+            var type = typeof(DummyTestClassVoorUitvoeren);
+            var instance = Activator.CreateInstance(type);
+            var methods = runner.ResolveTestMethods(type);
+
+            // Act
+            var testresults = runner.ExecuteTestMethods(methods, instance);
+
+            // Assert
+            Assert.Equal(1, testresults.Where(t => t.Result == true).Count());
+        }
     }
 }
