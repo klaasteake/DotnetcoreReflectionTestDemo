@@ -17,8 +17,10 @@ namespace MyTestRunner
                 .Where(m => m.GetCustomAttributes<FactAttribute>().Any());
         }
 
-        public void ExecuteTestMethods(IEnumerable<MethodInfo> methods, object instance)
+        public List<MyTestRunnerResult> ExecuteTestMethods(IEnumerable<MethodInfo> methods, object instance)
         {
+            var results = new List<MyTestRunnerResult>();
+
             foreach (var method in methods)
             {
                 try
@@ -27,10 +29,11 @@ namespace MyTestRunner
                 }
                 catch
                 {
-
+                    results.Add(new MyTestRunnerResult() { type = method, Result = false });
                 }
                 
             }
+            return results;
         }
     }
 }
